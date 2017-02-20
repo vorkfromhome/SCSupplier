@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-lg-12">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="pull-right label label-danger"></div>
+                <div class="pull-right label label-success"></div>
+                <div class="panel-title text-center">add contacts</div>
+            </div>
+            <!-- START panel footer-->
+            <div class="panel-footer clearfix">
+                <div class="input-group">
+                    <ui-select ng-model="contacts.shareuser.selected" theme="bootstrap" reset-search-input="false">
+                        <ui-select-match placeholder="Enter name...">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="users in contacts.AllSuser | filter: $select.search track by $index" refresh="contacts.refreshSuser($select.search)" refresh-delay="0">
+                            <div ng-bind-html="users.name | highlight: $select.search"></div> <small>Phone no: {{users.mobilenum}}</small> </ui-select-choices>
+                    </ui-select> <span class="input-group-btn">
+                        <button ng-click="contacts.addrequser()" class="btn btn-success btn-sm" type="submit"><i class="fa fa-plus"></i>
+                        </button>
+                     </span> </div>
+            </div>
+            <!-- END panel-footer-->
+            <!-- START list group-->
+            <div class="slimScrollDiv">
+                <scrollable class="list-group">
+                    <!-- START list group item-->
+                    <div class="list-group-item" ng-repeat="x in contacts.fulldata">
+                        <div class="media-box">
+                            <div class="pull-left"> <img class="media-box-object img-circle thumb32" src="app/img/user/02.jpg" alt="Image"> </div>
+                            <div class="media-box-body clearfix"> <span class="pull-right">
+                            <div class="checkbox c-checkbox">
+                            <label>
+                            <input type="checkbox" name="selectedItems[]" value="{{x.setdata[0]._id}}" ng-checked="contacts.selection.indexOf(x.setdata[0].mobilenum) > -1"     ng-click="contacts.toggleSelection(x.setdata[0].mobilenum)" />
+                            <span class="fa fa-check"></span></label>
+                            </div>
+                            </span> <strong class="media-box-heading text-primary">{{x.setdata[0].name}}</strong>
+                            <p class="mb-sm"> <small>{{x.setdata[0].mobilenum}}</small> </p>
+                        </div>
+                    </div>
+            </div>
+            <!-- END list group item-->
+            </scrollable>
+                
+                
+                 
+        </div>
+        <!-- END list group-->
+           <!-- START panel footer-->
+            <div class="panel-footer clearfix">
+               <button class="btn btn-info" ng-click="contacts.sharetofriends()" type="button"><i class="fa fa-share-alt"></i> Share</button>
+            </div>
+            <!-- END panel-footer-->
+    </div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="pull-right label label-danger"></div>
+                <div class="pull-right label label-success"></div>
+                <div class="panel-title text-center">Request For others</div>
+            </div>
+            <!-- START list group-->
+            <div class="slimScrollDiv">
+                <scrollable class="list-group">
+                    <!-- START list group item-->
+                    <div class="list-group-item" ng-repeat="x in contacts.fullreqdata">
+                        <div class="media-box">
+                            <div class="pull-left"> <img class="media-box-object img-circle thumb32" src="app/img/user/02.jpg" alt="Image"> </div>
+                            <div class="media-box-body clearfix"> <span ng-click="contacts.addtoconts(x._id,1)" class="pull-right label label-success"><i class="fa fa-plus"></i>
+                            </span>
+                            <span ng-click="contacts.addtoconts(x._id,2)" class="pull-right label label-danger"><i class="fa fa-ban"></i>
+                            </span>
+                            <strong class="media-box-heading text-primary">{{x.setdata[0].name}}</strong>
+                            <p class="mb-sm"> <small>{{x.setdata[0].mobilenum}}</small> </p>
+                        </div>
+                    </div>
+            </div>
+            <!-- END list group item-->
+            </scrollable>
+        </div>
+        <!-- END list group-->
+    </div>
+</div>
+</div>

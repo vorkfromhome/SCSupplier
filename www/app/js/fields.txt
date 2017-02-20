@@ -1,0 +1,57 @@
+      "mobilenum" : req.query.mobilenum,
+      "name" : req.query.name,
+      "email" : req.query.email,
+      "secure_question" : req.query.secure_question,
+      "secure_answer" : req.query.secure_answer,
+      "country" : req.query.country,
+      "state" : req.query.state,
+      "zip" : req.query.zip,
+      "doorno" : req.query.doorno,
+      "floor" : req.query.floor,
+      "addressone" : req.query.addressone,
+      "addresstwo" : req.query.addresstwo,
+      "taluk" : req.query.taluk,
+      "busname" : req.query.busname,
+      "tin" : req.query.tin,
+      "licensenum" : req.query.licensenum,
+      "vat" : req.query.vat,
+      "fax" : req.query.fax,
+      "busphone" : req.query.busphone,
+      "busmail" : req.query.busmail,
+
+
+
+      &secure_answer=&country=&state=&zip=&doorno=&floor=&addressone=&addresstwo=&taluk=&busname=&tin=&licensenum=&vat=&fax=&busphone=&busmail" 
+
+
+
+http://192.168.43.252:3000/proxy/http://localhost:8000/profileregister?&name=hameed&email=undefined
+&secure_question=1&secure_answer=wwwww&country=2&state=2&zip=232342&doorno=222&floor=sfs&addressone=dfwsf&addresstwo=edws&taluk=adse&mobilenum=9987654365
+
+
+
+
+      "mobilenum" : req.query.mobilenum,
+      "name" : req.query.name,
+      "email" : req.query.email,
+      "secure_question" : req.query.secure_question,
+      "secure_answer" : req.query.secure_answer,
+      "country" : req.query.country,
+      "state" : req.query.state,
+      "zip" : req.query.zip,
+      "doorno" : req.query.doorno,
+      "floor" : req.query.floor,
+      "addressone" : req.query.addressone,
+      "addresstwo" : req.query.addresstwo,
+      "taluk" : req.query.taluk,
+      "busname" : req.query.busname,
+      "tin" : req.query.tin,
+      "licensenum" : req.query.licensenum,
+      "vat" : req.query.vat,
+      "fax" : req.query.fax,
+      "busphone" : req.query.busphone,
+      "busmail" : req.query.busmail,
+      "otp" : req.query.otpdigits,
+      "create_date" :  req.query.datenow,
+      "status" : req.query.status,
+      "active" : req.query.active

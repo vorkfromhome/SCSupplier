@@ -1,0 +1,106 @@
+<div class="block-center mt-xl wd-xl">
+<!-- START panel-->
+<div class="panel panel-dark panel-flat" ng-controller="AddproductsController as form">
+  <div class="panel-heading text-center"> 
+  <h3>{{form.producttitle}}</h3>
+     
+  </div>
+  <div class="panel-body">
+    <div class="col-lg-12">
+      <div >
+       <form class="form-validate form-horizontal" name="form.formValidate" disabled="disabled" ng-submit="form.submitForm()" novalidate=" ">
+       
+            <div class="col-lg-12"> 
+              <!-- Mobile Number -->
+              <div class="form-group" >
+                <label>Seller information</label>
+                <input type="text" name="Sellerinfo" disabled="disabled" class="form-control inputborder"  placeholder="Enter Your Sellerinfo" ng-model="form.Sellerinfo"  />
+                </div>
+            </div>
+           
+           <div class="col-lg-12"> 
+              <!-- Mobile Number -->
+              <div class="form-group" >
+                <label>Product information</label>
+                <input type="text" name="Productinfo" disabled="disabled" class="form-control inputborder"  placeholder="Enter Your Productinfo" ng-model="form.Productinfo" />
+                </div>
+            </div>
+           
+           <div class="col-xs-12"> 
+              <!-- Product information -->
+              <div class="form-group" >
+                <label>Quality</label>
+                <input type="text" name="qty" disabled="disabled" class="form-control inputborder" placeholder="Enter Your Quality" ng-model="form.qty"/>
+                </div>
+            </div>
+           
+          <div class="col-xs-12">
+          <div class="form-group"  >
+            <label>Metrics</label>
+            <select class="form-control inputborder" name="metrices" disabled="disabled" ng-model="form.metrices" >
+              <option value="1">Kg</option>
+              <option value="2">Liter</option>
+            </select>
+          </div>
+		  </div>
+         
+  <!-- date of inventory -->         
+<div class="col-xs-12">
+<div class="form-group" >
+<label>date of inventory</label>
+<p class="input-group">
+<input class="form-control" type="text" name="dateofinventory" disabled="disabled" ng-model="form.dateofinventory"  />
+ <span class="input-group-btn">
+ <button class="btn btn-default" type="button">
+ <em class="fa fa-calendar"></em>
+ </button>
+ </span>
+ </p>
+ </div>
+ </div>
+           
+<!-- Expiry date for product -->             
+<div class="col-xs-12">
+<div class="form-group" >
+<label> Expiry date for product </label>
+<p class="input-group">
+<input class="form-control" type="text" name="expirydate" disabled="disabled" ng-model="form.expirydate"  />
+<span class="input-group-btn">
+<button class="btn btn-default" type="button" >
+<em class="fa fa-calendar"></em>
+</button>
+</span>
+</p>
+</div>
+</div>  
+           
+           
+        <!-- Status --> 	
+ <!-- Status --> 	
+		<div class="col-xs-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('activestatus', 'required')}">
+            <label>Status</label>
+            <select class="form-control inputborder" name="activestatus" ng-model="form.activestatus" required >
+              <option value="1">Published</option>
+              <option value="2">Removed</option>
+              <option value="3">Draft</option>
+            </select>
+			<p ng-show="form.validateInput('activestatus', 'required')" class="help-block">This field is required.</p>
+          </div>
+		  </div>
+		
+
+
+       <div class="col-xs-12 text-right">
+		<button class="btn btn-labeled btn-primary" type="submit"><strong>Next</strong>
+               <span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i>
+               </span>
+            </button>
+			</div>
+      </form>
+    </div>
+    </div>
+  </div>
+  <!-- END panel--> 
+</div>
+</div>

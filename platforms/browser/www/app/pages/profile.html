@@ -1,0 +1,143 @@
+<div class="block-center mt-xl wd-xl">
+<!-- START panel-->
+<div class="panel panel-dark panel-flat">
+  <div class="panel-heading text-center"> 
+  <h3>User Details</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-lg-12">
+      <div ng-controller="ProfileController as form">
+       <form class="form-validate form-horizontal" name="form.formValidate" ng-submit="form.submitForm()" novalidate="">
+        <div class="col-lg-12"> 
+              <!-- Mobile Number -->
+              <div class="form-group" ng-class="{ 'has-error' : form.validateInput('name', 'required')}">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control inputborder"  placeholder="Enter Your Name" ng-model="form.name" ng-pattern="/[A-Za-z]$/" required />
+                <p ng-show="form.validateInput('name', 'required')" class="help-block">This field is required.</p>
+				<p ng-show="form.validateInput('name', 'pattern')" class="help-block">This field must contain only digits</p>
+              </div>
+            </div>
+			
+			<div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('email','email')}">
+            <label>Email address</label>
+            <input class="form-control" placeholder="Enter email" name="email" type="email" ng-model="form.email" />
+		    <p ng-show="form.validateInput('email','email')" class="help-block">This field must Email</p>
+          </div>
+        </div>
+		
+		<div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('confemail','email')}">
+            <label>Email address</label>
+            <input class="form-control" placeholder="Enter Confirm Email" name="confemail" type="email" ng-model="form.confemail" ui-validate="'$value==form.email'" />
+		    <p ng-show="form.validateInput('confemail','email')" class="help-block">This field must Email</p>
+			<p ng-show="form.validateInput('confemail','validate')" class="help-block">This field must Email</p>
+          </div>
+        </div>
+			
+			
+            <div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('securityquestion', 'required')}">
+            <label>Security Question</label>
+            <select class="form-control inputborder" placeholder="Enter Security Question" name="securityquestion" ng-model="form.securityquestion" required >
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+              <option value="4">Option 4</option>
+            </select>
+			<p ng-show="form.validateInput('securityquestion', 'required')" class="help-block">This field is required.</p>
+          </div>
+		  </div>
+        
+        <div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('qustnanswer', 'required')}">
+            <label>Answer:</label>
+            <input class="form-control inputborder" type="text" name="qustnanswer" placeholder="Enter Answers" ng-model="form.qustnanswer" required />
+			<p ng-show="form.validateInput('qustnanswer', 'required')" class="help-block">This field is required.</p>
+          </div>
+        </div>
+		
+		<div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('Country', 'required')}">
+            <label>Country</label>
+            <select class="form-control inputborder" placeholder="Enter Security Question" name="Country" ng-model="form.Country" required >
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+              <option value="4">Option 4</option>
+            </select>
+			<p ng-show="form.validateInput('Country', 'required')" class="help-block">This field is required.</p>
+          </div>
+		  </div>
+		  
+		  
+		  <div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('State', 'required')}">
+            <label>State </label>
+            <select class="form-control inputborder" placeholder="Enter Security Question" name="State" ng-model="form.State" required >
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+              <option value="4">Option 4</option>
+            </select>
+			<p ng-show="form.validateInput('State', 'required')" class="help-block">This field is required.</p>
+          </div>
+		  </div>
+       
+        <div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('zip', 'required')}">
+            <label>Postal Code/Zip</label>
+            <input class="form-control inputborder" placeholder="Enter Postal/Zip" name="zip" type="text" ng-model="form.zip" required />
+			<p ng-show="form.validateInput('zip', 'required')" class="help-block">This field is required.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('doorno', 'required')}">
+            <label>Door No</label>
+            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input class="form-control inputborder" placeholder="Enter Door No" name="doorno" type="text" ng-model="form.doorno" required />
+            </div>
+			<p ng-show="form.validateInput('doorno', 'required')" class="help-block">This field is required.</p>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label>Floor/Apartment</label>
+            <input class="form-control" placeholder="Enter Floor/Apartment" name="floor" type="text" ng-model="form.floor" />
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('addressone', 'required')}">
+            <label>address 1/ area</label>
+            <input class="form-control inputborder" placeholder="Enter Street" name="addressone" type="text" ng-model="form.addressone" required />
+			<p ng-show="form.validateInput('addressone', 'required')" class="help-block">This field is required.</p>
+          </div>
+        </div>
+		
+		<div class="col-lg-12">
+          <div class="form-group"  >
+            <label>Taluk</label>
+            <input class="form-control" placeholder="Enter Street" name="Taluk" type="text" ng-model="form.Taluk"  />
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label>Area/Address 2</label>
+            <input class="form-control" placeholder="Enter Area/Address 2" name="addresstwo" type="text" ng-model="form.addresstwo"  />
+          </div>
+        </div>
+
+       <div class="col-lg-12 text-right">
+		<button class="btn btn-labeled btn-primary" type="submit"><strong>Next</strong>
+               <span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i>
+               </span>
+            </button>
+			</div>
+      </form>
+    </div>
+    </div>
+  </div>
+  <!-- END panel--> 
+</div>
+</div>

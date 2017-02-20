@@ -1,0 +1,47 @@
+<div class="block-center mt-xl wd-xl">
+<!-- START panel-->
+<div class="panel panel-dark panel-flat">
+  <div class="panel-heading text-center"> 
+  <h3>Login</h3>
+   </div>
+  <div class="panel-body">
+    <div class="col-sm-12"> 
+      <!-- FORM ============ -->
+      <div ng-controller="NewloginController as form">
+              <form class="form-validate form-horizontal" name="form.formValidate" ng-submit="form.submitForm()" novalidate="">
+          <div class="row">
+            <div class="col-lg-12"> 
+              <!-- Mobile Number -->
+              <div class="form-group" ng-class="{ 'has-error' : form.validateInput('username', 'required')}">
+                <label>Mobile / Email</label>
+                <input type="text" name="username" class="form-control inputborder"  placeholder="Enter mobile number / Email" ng-model="form.username" required>
+                <p ng-show="form.validateInput('username', 'required')" class="text-danger">This field is required.</p>
+              </div>
+            </div>
+            <div class="col-lg-12"> 
+              <!-- Mobile Number -->
+              <div class="form-group" ng-class="{ 'has-error' : form.validateInput('password', 'required')}">
+                <label>PIN / PASSWORD</label>
+                <input type="password" name="password" class="form-control inputborder"  placeholder="Enter PIN / PASSWORD" ng-model="form.password" required>
+                <p ng-show="form.validateInput('password', 'required')" class="text-danger">This field is required.</p>
+              </div>
+            </div>
+			<div class="clearfix">
+               <div class="checkbox c-checkbox pull-left mt0">
+                  <label>
+                     <input type="checkbox" value="" name="account_remember" ng-model="form.account_remember" />
+                     <span class="fa fa-check"></span>Remember Me</label>
+               </div>
+               <div class="pull-right" style="margin-top: 7px;"><a class="text-muted" ui-sref="page.forgetpass">Forgot your password?</a>
+               </div>
+            </div>
+          </div>
+          <div class="col-sm-12 text-center" style="margin-top: 15px;">
+            <button type="submit" class="btn btn-success btn-block"><strong>Login</strong></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- END panel--> 
+</div>

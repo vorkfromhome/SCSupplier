@@ -1,0 +1,37 @@
+<div class="block-center mt-xl wd-xl">
+<!-- START panel-->
+<div class="panel panel-dark panel-flat">
+  <div class="panel-heading text-center"> 
+  <h3>OTP</h3>
+  </div>
+  <div class="panel-body">
+    <div class="panel-body">
+           
+              <!-- FORM ============  -->
+              <div ng-controller="OtpController as form">
+              <form class="form-validate form-horizontal" name="form.formValidate" ng-submit="form.submitForm()" novalidate="">
+                <!-- Mobile Number OTP -->
+				<div class="col-sm-12"> 
+                <div class="form-group" ng-class="{ 'has-error' : form.validateInput('otp', 'required')}">
+                  <label>OTP</label>
+                  <input type="text" name="otp" class="form-control inputborder"  placeholder="Enter Your OTP" ng-model="form.otp" ng-pattern="/^[0-9]{6}$/" required>
+                  <p ng-show="form.validateInput('otp', 'required')" class="text-danger">This field is required.</p>
+				  <p ng-show="form.validateInput('otp', 'pattern')" class="text-danger">This field must contain only digits</p>
+              </div>
+			  </div>
+                <div class="col-xs-12 text-center">
+				<div class="col-xs-6 text-center">
+				  <button type="button" ng-disabled="form.sendotp" ng-click="form.sendotpagain()" class="btn btn-info" ><strong>Send OTP</strong></button> 
+				  </div>
+				  <div class="col-xs-6 text-center">
+                  <button type="submit" class="btn btn-success" ><strong>Confirm</strong></button>
+				  </div>
+                </div>
+              </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END panel--> 
+</div>

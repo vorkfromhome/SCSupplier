@@ -1,0 +1,125 @@
+
+<div class="row">
+   <div class="col-lg-12">
+   <!-- START Multiple List group  dash2.productdetails-->
+<div class="list-group">
+   <a class="list-group-item" href="#">
+      <table class="wd-wide">
+         <tbody>
+            <tr>
+               <td class="wd-xs">
+                  <div class="ph">
+        <img class="media-box-object img-responsive img-rounded thumb64" src="{{ 'app/img/products/'+dash2.productdetails.imagename }}" alt="{{dash2.productdetails.imagename}}" />
+                  </div>
+               </td>
+               <td>
+                  <div class="ph">
+                     <h4 class="media-box-heading">{{dash2.productdetails.name}}</h4>
+                     <small class="text-muted">{{dash2.productdetails.kg}}</small>
+                  </div>
+               </td>
+               <td class="wd-xs">
+                  <div class="ph">
+                     <p class="m0 text-muted">
+                        <em class="fa fa-money fa-2x" ></em> 
+                         <br>
+                         Rs {{dash2.productdetails.price}}</p>
+                  </div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </a>
+</div>
+<!-- END Multiple List group--> 
+   </div>
+    <div class="col-lg-12">
+    <!-- Zero Configuration-->
+<div class="panel panel-default">
+   <div class="panel-body">
+      <table width="100%" class="row-border" datatable="ng">
+         <thead>
+            <tr>
+               <th>Store Name</th>
+               <th>Price</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr ng-repeat="x in dash2.productdetails.store">
+               <td>{{x.name}}</td>
+               <td>{{x.price}}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+    </div>
+    
+    
+    
+   <div class="col-lg-12">
+           <!-- START chart-->
+   <div class="panel" id="panelChart9">
+     <!-- <div class="panel-heading">
+         <div class="panel-title">Overall progress</div>
+      </div>-->
+      <div class="panel-wrapper" uib-collapse="panelChart9">
+         <div class="panel-body">
+            <flot src="'http://localhost:8000/dashboardtwoweekprice'" options="dash2.splineOptions" height="300px"></flot>
+         </div>
+      </div>
+   </div>
+   <!-- END chart-->
+    </div>
+       <div class="col-lg-12">
+      <!-- START panel-->
+      <div class="panel panel-info" id="panelDemo10">
+         <div class="panel-heading">
+          <span class="pull-right label label-danger">Rs {{dash2.productdetails.store[0].price}} / {{dash2.productdetails.kg}} kg</span>
+                           <strong class="media-box-heading text-primary">
+                              <span class="circle circle-success circle-lg text-left" style="color:white;"></span>{{dash2.productdetails.store[0].name}}</strong>
+          </div>
+         <div class="panel-body">
+             <div class="col-lg-12">
+                 <h4>{{dash2.productdetails.store[0].location}}</h4>
+                 <p><em class="fa fa-star"></em><em class="fa fa-star"></em><em class="fa fa-star"></em></p>
+                 <h3>Suppler</h3>
+                 <p>{{dash2.productdetails.supplername}} {{dash2.productdetails.supplertype}} <em class="fa fa-star"></em><em class="fa fa-star"></em><em class="fa fa-star"></em></p>
+                 <p>{{dash2.productdetails.supplerlocation}}</p>
+             </div>
+          <div class="col-lg-12">
+            <!-- Success button with label-->
+            <button class="btn btn-labeled btn-success" id="{{dash2.prdid}}" ng-click="dash2.addbuy(this)" type="button">
+               <span class="btn-label"><i class="fa fa-money"></i>
+               </span>Buy</button>
+            <!-- Info button with label-->
+            <button class="btn btn-labeled btn-info" id="{{dash2.prdid}}" ng-click="dash2.addcart(this)" type="button">
+               <span class="btn-label"><i class="fa fa-shopping-cart"></i>
+               </span>EST</button>
+         </div>
+         </div>
+         <!--<div class="panel-footer">
+           
+          </div>-->
+      </div>
+      <!-- END panel-->
+   </div>
+    <div class="col-lg-12"> 
+      <!-- START bar chart-->
+      <div class="panel" id="panelChart3">
+        <!-- <div class="panel-heading">
+            <div class="panel-title">Projects Hours</div>
+         </div>-->
+         <div class="panel-wrapper" uib-collapse="panelChart3">
+            <div class="panel-body">
+               <flot src="'http://localhost:8000/dashboardtwostores'" label="Store Price" color= "#9289ca" options="dash2.barStackedOptions" height="250px"></flot>
+            </div>
+         </div>
+      </div>
+      <!-- END bar chart-->       
+
+   </div>
+              <button class="btn btn-labeled btn-primary" type="button" style=" position: fixed; right:10px; top: 10px; z-index:999">
+               <span class="btn-label"><i class="fa fa-shopping-cart"></i>
+               </span>  </button>
+</div>
