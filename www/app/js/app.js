@@ -8146,6 +8146,10 @@
                 url: '/profile'
                 , title: 'profile'
                 , templateUrl: 'app/pages/profile.html'
+            }).state('app.editprofile', {
+                url: '/editprofile'
+                , title: 'editprofile'
+                , templateUrl: 'app/views/editprofile.html'
             }).state('app.inventory', {
                 url: '/inventory'
                 , title: 'inventory'
@@ -8153,10 +8157,41 @@
                 , controller: 'inventoryController'
                 , controllerAs: 'inventory'
                 , resolve: helper.resolveFor('datatables')
+                        }).state('app.productinventory', {
+                url: '/productinventory'
+                , title: 'productinventory'
+                , templateUrl: helper.basepath('productinventory.html')
+                , controller: 'productinventoryController'
+                , controllerAs: 'productinventory'
+                , resolve: helper.resolveFor('datatables')
+            }).state('app.categories', {
+                url: '/categories'
+                , title: 'categories'
+                , templateUrl: helper.basepath('categories.html')
+                , controller: 'categoriesController'
+                , controllerAs: 'categories'
+                , resolve: helper.resolveFor('datatables')    
             }).state('app.addproducts', {
                 url: '/addproducts'
                 , title: 'addproducts'
                 , templateUrl: helper.basepath('addproducts.html')
+            }).state('app.addproductinventory', {
+                url: '/addproductinventory'
+                , title: 'addproductinventory'
+                , templateUrl: helper.basepath('addproductinventory.html')
+            }).state('app.editproductinventory', {
+                url: '/editproductinventory/:updateid'
+                , title: 'editproductinventory'
+                , templateUrl: helper.basepath('updateproductinventory.html')
+            })
+            .state('app.addcategories', {
+                url: '/addcategories'
+                , title: 'addcategories'
+                , templateUrl: helper.basepath('addcategories.html')
+            }).state('app.editcategories', {
+                url: '/editcategories/:updateid'
+                , title: 'editcategories'
+                , templateUrl: helper.basepath('addcategories.html')
             }).state('app.editproducts', {
                 url: '/editproducts/:updateid'
                 , title: 'editproducts'
@@ -8165,6 +8200,10 @@
                 url: '/profiletwo'
                 , title: 'profiletwo'
                 , templateUrl: 'app/pages/profiletwo.html'
+            }).state('app.editprofiletwo', {
+                url: '/editprofiletwo'
+                , title: 'editprofiletwo'
+                , templateUrl: 'app/views/editprofiletwo.html'
             }).state('page.newlogin', {
                 url: '/newlogin'
                 , title: 'newlogin'
@@ -10377,3 +10416,340 @@ ngToast.dismiss(myToastMsg); */
 
 
 
+// validation for categoriesController.........
+(function () {
+    'use strict';
+    angular.module('app.dashboard').controller('categoriesController', categoriesController);
+
+    function categoriesController($scope, $http,$state, $location) {
+        var vm = this;
+        vm.submitted = false;
+        vm.addcategories = function() {
+         $state.go("app.addcategories"); 
+         
+        };
+        vm.editcategories = function(id){
+            $state.go("app.editcategories",{'updateid':id}); 
+        };
+            activate();
+        ////////////////
+        function activate() {
+           $http.get("http://localhost:8000/admin/listcategory?id=").then(function (response) {
+                 console.log(response.data);
+                vm.productdata = response.data.result;
+                });
+        }
+
+    }
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+// addcategories validations....
+(function () {
+    'use strict';
+    angular.module('app.forms').controller('AddcategoriesController', AddcategoriesController);
+
+    function AddcategoriesController($scope, $http,$state, $location) {
+        var vm = this;
+        vm.submitted = false;
+        vm.validateInput = function (name, type) {
+            var input = vm.formValidate[name];
+            return (input.$dirty || vm.submitted) && input.$error[type];
+        };
+       vm.producttitle = "New Product";
+       vm.updateid = $state.params.updateid;
+       if(vm.updateid!=undefined)
+       {
+        vm.producttitle = "Update Product";
+        $http.get("http://localhost:8000/admin/listcategory?id=" + vm.updateid).then(function (response) {
+            vm.setdata = response.data.result[0];
+            vm.categoryname = vm.setdata.categoryname;
+        }); 
+       }
+        console.log(vm.updateid);
+        // Submit form
+        vm.submitForm = function () {
+            vm.submitted = true;
+            if (vm.formValidate.$valid) {
+                console.log('Submitted!!'); 
+               if(vm.updateid==undefined)
+                    {
+                 $http.get("http://localhost:8000/admin/createcategory?categoryname=" + vm.categoryname +"&status=1").then(function (response) {
+                    console.log(response.data);
+                    $state.go("app.categories"); 
+                });
+                    }else {
+                      $http.get("http://localhost:8000/admin/updatecategory?categoryname=" + vm.categoryname+ "&updateid=" + vm.updateid+ "&status=1").then(function (response) {
+                    console.log(response.data);
+                    $state.go("app.categories"); 
+                });  
+                    }
+            }
+            else {
+                console.log('Not valid!!');
+                return false;
+            }
+        };
+        
+    
+
+    }
+})();
+
+
+
+
+
+
+
+
+
+
+// validation for productinventoryController.........
+(function () {
+    'use strict';
+    angular.module('app.dashboard').controller('productinventoryController', productinventoryController);
+
+    function productinventoryController($scope, $http,$state, $location) {
+        var vm = this;
+        vm.submitted = false;
+        vm.addproductinventory = function() {
+         $state.go("app.addproductinventory"); 
+         
+        };
+        vm.editproductinventory = function(id){
+            $state.go("app.editproductinventory",{'updateid':id}); 
+        };
+            activate();
+        ////////////////
+        function activate() {
+           $http.get("http://localhost:8000/admin/listproducts?id=").then(function (response) {
+                    console.log(response.data);
+                vm.productdata = response.data.result;
+                });
+        }
+      
+    }
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// addproductinventory validations....
+(function () {
+    'use strict';
+    angular.module('app.forms').controller('AddproductsinventoryController', AddproductsinventoryController);
+
+    function AddproductsinventoryController($scope, $http,$state, $location) {
+        var vm = this;
+        vm.submitted = false;
+        vm.validateInput = function (name, type) {
+            var input = vm.formValidate[name];
+            return (input.$dirty || vm.submitted) && input.$error[type];
+        };
+       vm.producttitle = "Products";
+        vm.disabled='';
+       vm.updateid = $state.params.updateid;
+       if(vm.updateid!=undefined)
+       {
+         vm.disabled='disabled="disabled"';
+        vm.producttitle = "Update Product";
+        $http.get("http://localhost:8000/admin/listproducts?id=" + vm.updateid).then(function (response) {
+            vm.setdata = response.data.result[0];
+            console.log(vm.setdata);
+            vm.category = vm.setdata.category;
+            vm.producttype = vm.setdata.producttype;
+            vm.productname = vm.setdata.productname;
+            vm.quantity = vm.setdata.quantity;
+            vm.metrics = vm.setdata.metrics;
+             vm.price = vm.setdata.price;
+            vm.dateininventory = vm.setdata.dateininventory;
+            vm.expiry = vm.setdata.expiry;
+            vm.store = vm.setdata.store;
+            vm.supplier = vm.setdata.supplier;
+            vm.activestatus = vm.setdata.activestatus;
+        }); 
+       }
+        console.log(vm.updateid);
+        // Submit form
+        vm.submitForm = function () {
+            vm.submitted = true;
+            if (vm.formValidate.$valid) {
+                console.log('Submitted!!'); 
+               if(vm.updateid==undefined)
+                    {
+                 $http.get("http://localhost:8000/admin/createproducts?category="+ vm.category+"&producttype="+ vm.producttype+"&productname="+vm.productname+"&quantity="+vm.quantity+"&metrics="+vm.metrics+"&price="+vm.price+"&store="+vm.store+"&supplier="+vm.supplier+"&dateininventory="+vm.dateininventory+"&expiry="+vm.expiry+"&activestatus="+vm.activestatus+"&status=1").then(function (response) {
+                    console.log(response.data);
+                    $state.go("app.productinventory"); 
+                });
+                    }else {
+                      $http.get("http://localhost:8000/admin/updateproducts?category="+ vm.category+"&producttype="+ vm.producttype+"&productname="+vm.productname+"&quantity="+vm.quantity+"&metrics="+vm.metrics+"&price="+vm.price+"&store="+vm.store+"&supplier="+vm.supplier+"&dateininventory="+vm.dateininventory+"&expiry="+vm.expiry+"&activestatus="+vm.activestatus+"&updateid=" + vm.updateid+ "&status=1").then(function (response) {
+                    console.log(response.data);
+                    $state.go("app.productinventory"); 
+                });  
+                    }
+            }
+            else {
+                console.log('Not valid!!');
+                return false;
+            }
+        };
+        
+    
+        activate();
+        ////////////////
+        function activate() {
+            vm.today = function () {
+                vm.dt = new Date();
+                if(vm.dateininventory!=""){
+                    vm.dt = new Date(vm.dateininventory);
+                }
+            };
+            vm.today();
+            vm.clear = function () {
+                vm.dt = null;
+            };
+            // Disable weekend selection
+            vm.disabled = function (date, mode) {
+                return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
+            };
+            vm.toggleMin = function () {
+                vm.minDate = vm.minDate ? null : new Date();
+            };
+            vm.toggleMin();
+            vm.open = function ($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                vm.opened = true;
+            };
+            vm.dateOptions = {
+                formatYear: 'yy'
+                , startingDay: 1
+            };
+            vm.initDate = new Date('2019-10-20');
+            vm.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            vm.format = vm.formats[0];
+            
+            
+            
+            vm.today2 = function () {
+                vm.dt2 = new Date();
+                if(vm.expiry!=""){
+                    vm.dt2 = new Date(vm.expiry);
+                }
+            };
+            vm.today2();
+            vm.clear2 = function () {
+                vm.dt2 = null;
+            };
+            // Disable weekend selection
+            vm.disabled2 = function (date, mode) {
+                return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
+            };
+            vm.toggleMin2 = function () {
+                vm.minDate2 = vm.minDate2 ? null : new Date();
+            };
+            vm.toggleMin2();
+            vm.open2 = function ($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                vm.opened2 = true;
+            };
+            vm.dateOptions2 = {
+                formatYear: 'yy'
+                , startingDay: 1
+            };
+            vm.initDate2 = new Date('2019-10-20');
+            vm.formats2 = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            vm.format2 = vm.formats[0];
+        }
+        
+    }
+})();
+
+
+var mobilenum = "9876543210";
+
+// editProfile validations....
+(function () {
+    'use strict';
+    angular.module('app.forms').controller('editprofileController', editprofileController);
+
+    function editprofileController($scope, $http, $location) {
+        var vm = this;
+        vm.submitted = false;
+        vm.validateInput = function (name, type) {
+            var input = vm.formValidate[name];
+            return (input.$dirty || vm.submitted) && input.$error[type];
+        };
+        // Submit form
+        vm.submitForm = function () {
+            vm.submitted = true;
+            if (vm.formValidate.$valid) {
+                console.log('Submitted!!');
+                $http.get("http://localhost:8000/seller/profileregister?&name=" + vm.name + "&email=" + vm.email + "&secure_question=" + vm.securityquestion + "&secure_answer=" + vm.qustnanswer + "&country=" + vm.Country + "&state=" + vm.State + "&zip=" + vm.zip + "&doorno=" + vm.doorno + "&floor=" + vm.floor + "&addressone=" + vm.addressone + "&addresstwo=" + vm.addresstwo + "&taluk=" + vm.Taluk + "&mobilenum=" + mobilenum).then(function (response) {
+                    console.log(response.data);
+                    $location.path("/app/editprofiletwo");
+                });
+            }
+            else {
+                console.log('Not valid!!');
+                return false;
+            }
+        };
+    }
+})();
+
+
+//editprofiletwo validations....
+(function () {
+    'use strict';
+    angular.module('app.forms').controller('editprofiletwoController', editprofiletwoController);
+
+    function editprofiletwoController($scope, $http, $location) {
+        var vm = this;
+        vm.submitted = false;
+        
+        vm.validateInput = function (name, type) {
+            var input = vm.formValidate[name];
+            return (input.$dirty || vm.submitted) && input.$error[type];
+        };
+        // Submit form
+        vm.submitForm = function () {
+            vm.submitted = true;
+            if (vm.formValidate.$valid) {
+                console.log('Submitted!!');
+                $http.get("http://localhost:8000/seller/profiletworegister?busname=" + vm.busname + "&License=" + vm.License + "&tin=" + vm.tin + "&vat=" + vm.vat + "&FAX=" + vm.FAX + "&busmobile=" + vm.busmobile + "&email=" + vm.email + "&mobilenum=" + mobilenum).then(function (response) {
+                    console.log(response.data);
+                    $location.path("/page/newlogin");
+                });
+            }
+            else {
+                console.log('Not valid!!');
+                return false;
+            }
+        };
+    }
+})();

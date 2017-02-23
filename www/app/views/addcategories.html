@@ -1,0 +1,49 @@
+<div class="block-center mt-xl wd-xl">
+<!-- START panel-->
+<div class="panel panel-dark panel-flat" ng-controller="AddcategoriesController as form">
+  <div class="panel-heading text-center"> 
+  <h3>{{form.producttitle}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-lg-12">
+      <div >
+       <form class="form-validate form-horizontal" name="form.formValidate" ng-submit="form.submitForm()" novalidate=" ">
+       
+            <div class="col-lg-12"> 
+              <!-- Mobile Number -->
+              <div class="form-group" ng-class="{ 'has-error' : form.validateInput('categoryname', 'required')}">
+                <label>Add Categories</label>
+                <input type="text" name="categoryname" class="form-control inputborder"  placeholder="Enter the category" ng-model="form.categoryname" ng-pattern="/[A-Za-z]$/" required />
+                <p ng-show="form.validateInput('categoryname', 'required')" class="help-block">This field is required.</p>
+				<p ng-show="form.validateInput('categoryname', 'pattern')" class="help-block">This field must contain only charectors</p>
+              </div>
+            </div>
+           
+
+           
+
+           
+
+           
+           
+           
+ 
+
+           
+
+		
+
+
+       <div class="col-xs-12 text-right">
+		<button class="btn btn-labeled btn-primary" type="submit"><strong>Next</strong>
+               <span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i>
+               </span>
+            </button>
+			</div>
+      </form>
+    </div>
+    </div>
+  </div>
+  <!-- END panel--> 
+</div>
+</div>

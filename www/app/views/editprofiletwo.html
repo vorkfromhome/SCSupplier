@@ -1,0 +1,104 @@
+<div class="block-center mt-xl wd-xl">
+<!-- START panel-->
+<div class="panel panel-dark panel-flat">
+  <div class="panel-heading text-center"> 
+  <h3>Edit profile two</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-lg-12">
+      <div ng-controller="ProfileTwoController as form">
+       <form class="form-validate form-horizontal" name="form.formValidate" ng-submit="form.submitForm()" novalidate="">
+        <div class="col-lg-12"> 
+              <div class="form-group">
+                <label>Business Name</label>
+                <input type="text" name="busname" class="form-control"  placeholder="Enter Your Business Name" ng-model="form.busname" ng-pattern="/[A-Za-z]$/" />
+				<p ng-show="form.validateInput('busname', 'pattern')" class="help-block">This field must contain only digits</p>
+              </div>
+            </div>
+			
+			<div class="col-lg-12"> 
+              <div class="form-group">
+                <label>License Number</label>
+                <input type="text" name="License" class="form-control"  placeholder="Enter Your License Number" ng-model="form.License" ng-pattern="/[0-9]$/" />
+				<p ng-show="form.validateInput('License', 'pattern')" class="help-block">This field must contain only digits</p>
+              </div>
+            </div>
+			
+			<div class="col-lg-12"> 
+              <div class="form-group">
+                <label>TIN Number</label>
+                <input type="text" name="tin" class="form-control"  placeholder="Enter Your TIN Number" ng-model="form.tin" ng-pattern="/[0-9]$/" />
+				<p ng-show="form.validateInput('tin', 'pattern')" class="help-block">This field must contain only digits</p>
+              </div>
+            </div>
+			
+			<div class="col-lg-12"> 
+              <div class="form-group">
+                <label>VAT Number</label>
+                <input type="text" name="vat" class="form-control"  placeholder="Enter Your VAT Number" ng-model="form.vat" ng-pattern="/[0-9]$/" />
+				<p ng-show="form.validateInput('vat', 'pattern')" class="help-block">This field must contain only digits</p>
+              </div>
+            </div>
+			
+			<div class="col-lg-12"> 
+              <div class="form-group">
+                <label>FAX</label>
+                <input type="text" name="FAX" class="form-control"  placeholder="Enter Your FAX" ng-model="form.FAX" ng-pattern="/[0-9]$/" />
+				<p ng-show="form.validateInput('FAX', 'pattern')" class="help-block">This field must contain only digits</p>
+              </div>
+            </div>
+			
+			<div class="col-lg-12"> 
+              <!-- Mobile Number -->
+              <div class="form-group" ng-class="{ 'has-error' : form.validateInput('busmobile', 'pattern')}">
+                <label>Business phone</label>
+                <input type="text" name="busmobile" class="form-control"  placeholder="Enter Business phone" ng-model="form.busmobile" ng-pattern="/[0-9]{10}$/" >
+				<p class="text-danger" ng-show="form.validateInput('busmobile', 'pattern')">This field must contain only digits</p>
+              </div>
+            </div>
+            <div class="col-lg-12"> 
+              <!-- Confirm Mobile Number -->
+              <div class="form-group" ng-class="{ 'has-error' : form.validateInput('confbusmobile', 'pattern')}">
+                <label>Confirm Business phone</label>
+                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                  <input class="form-control" type="text" name="confbusmobile" placeholder="Enter Confirm Business phone" ng-model="form.confbusmobile" ui-validate="'$value==form.busmobile'" ng-pattern="/[0-9]{10}$/" ui-validate-watch="'validator.busmobile'" />
+                </div>
+				<p class="text-danger" ng-show="form.validateInput('confbusmobile', 'pattern')">This field must contain only digits</p>
+				<p class="text-danger" ng-show="form.validateInput('confbusmobile', 'validate')">This field must contain only digits</p>
+              </div>
+			  </div>
+			
+			
+			<div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('email','email')}">
+            <label>communication email address</label>
+            <input class="form-control" placeholder="Enter email" name="email" type="email" ng-model="form.email" />
+		    <p ng-show="form.validateInput('email','email')" class="help-block">This field must Email</p>
+          </div>
+        </div>
+		
+		<div class="col-lg-12">
+          <div class="form-group"  ng-class="{ 'has-error' : form.validateInput('confemail','email')}">
+            <label>Confirm email address</label>
+            <input class="form-control" placeholder="Enter Confirm Email" name="confemail" type="email" ng-model="form.confemail" ui-validate="'$value==form.email'" />
+		    <p ng-show="form.validateInput('confemail','email')" class="help-block">This field must Email</p>
+			<p ng-show="form.validateInput('confemail','validate')" class="help-block">This field must Email</p>
+          </div>
+        </div>
+        <div class="col-lg-12">
+		<div class="col-xs-6 text-left">
+		<a class="btn btn-primary" ui-sref="page.profile"><i class="fa fa-arrow-left"></i></a>
+		</div>
+		<div class="col-xs-6 text-right">	   
+		<button class="btn btn-success" type="submit">
+        <i class="fa fa-arrow-right"></i>
+        </button>
+		</div>
+			</div>
+      </form>
+    </div>
+    </div>
+  </div>
+  <!-- END panel--> 
+</div>
+</div>

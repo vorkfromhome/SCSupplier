@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-12 text-right">
+            <button class="btn btn-labeled btn-success" type="button" ng-click="productinventory.addproductinventory()"> <span class="btn-label"><i class="fa fa-plus"></i>
+               </span>add</button>
+        </div>
+        <div class="col-lg-12">
+            <!-- Zero Configuration-->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table width="100%" class="row-border" datatable="ng">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>product Type</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Metrices</th>
+                                <th>Price</th>
+                                <th>Store</th>
+                                <th>Supplier</th>
+                                <th>dateofinventory</th>
+                                <th>dateofexpiry</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in productinventory.productdata">
+                                <td>{{x.category}}</td>
+                                <td>{{x.producttype}}</td>
+                                <td>{{x.productname}}</td>
+                                <td>{{x.quantity}}</td>
+                                <td>{{x.metrics == "1" ? "Kg" : "Liter"}}</td>
+                                <td>{{x.price}}</td>
+                                <td>{{x.store}}</td>
+                                <td>{{x.supplier}}</td>
+                                <td>{{x.dateininventory}}</td>
+                                <td>{{x.expiry}}</td>
+                                <td>{{x.activestatus == "1" ? "Published" : x.activestatus == "2" ? "Removed" : "Draft"}}</td>
+                                <td>
+                                    <button class="btn btn-info" type="button" ng-click="productinventory.editproductinventory(x._id)"> <i class="fa fa-pencil"></i> </button>
+                        
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end Main panels-->
+
+
